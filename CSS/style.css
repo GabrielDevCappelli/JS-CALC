@@ -1,0 +1,49 @@
+* {
+    margin: 0;   /*zerar margem*/
+    padding: 0;  /*zerar espaçamento*/
+    box-sizing: border-box; /*todos os elementos não passem da largura do elemento pai*/
+    font-family: Helvetica; 
+}
+
+body {
+    background-color: black;
+    display: flex;
+    align-items: center; /*alinhar intens no centro*/
+    justify-content: center; /*açinhar calculadora no centro tanto horizontal como vertical*/
+    padding: 3em;
+}
+
+#calc {
+    width: 500px;
+    padding: .6em;
+    background-color: aliceblue;
+    color: black;
+    display: flex; /*intens internos*/
+    flex-direction: column; /*itens uma a baixo do outro*/
+}
+
+#calc h3 {    
+    font-size: .8em;
+    font-weight: 300;
+    color: rgb(46, 129, 101);
+}
+
+#operations {
+    text-align: right;  /*numeros da direita para esquerda*/
+}
+
+#previous-operations,
+#current-operation {
+    min-height: 1.6em;
+    padding: .2em;  /*tirando os numeros da extremidade*/
+    overflow-wrap: break-word; /*prever a altura dos numero e quebrar linha para baixo*/
+}
+
+#previous-operations {
+    color: aquamarine;
+}
+
+#current-operation {
+    font-size: 3em;
+    font-weight: 700;
+}
