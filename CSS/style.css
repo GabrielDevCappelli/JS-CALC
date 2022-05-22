@@ -16,7 +16,7 @@ body {
 #calc {
     width: 500px;
     padding: .6em;
-    background-color: aliceblue;
+    background-color: rgb(172, 210, 243);
     color: black;
     display: flex; /*intens internos*/
     flex-direction: column; /*itens uma a baixo do outro*/
@@ -46,4 +46,37 @@ body {
 #current-operation {
     font-size: 3em;
     font-weight: 700;
+}
+
+#buttons-container { 
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr; /* definir proporção de cada coluna */
+    gap: 3px;
+}
+
+#buttons-container button {
+    border: 1px solid transparent;
+    border-radius: 0;
+    height: 4em;
+    font-size: 1.2em;
+    background-color: aliceblue;
+    cursor: cell;   
+}
+
+#buttons-container button:hover {  
+    background-color: #bababa;
+    border-color: #999;
+}
+
+#buttons-container .number {
+    background-color: #f3f3f3f3;
+}
+
+#buttons-container #equal-btn {
+    grid-column: span 2;  /*  ocupar 2 espaços na linha para o botao ficar maior */
+    background-color: rgb(59, 211, 211);
+}
+
+#buttons-container #equal-btn:hover {
+    background-color: rgb(40, 150, 150);
 }
