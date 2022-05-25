@@ -1,87 +1,88 @@
-const previousOperationText = document.queryselector("#previous-operation")   // selecionar os elementos (visor)
-const currentOperationText = document.queryselector("#current-operation")
-const buttons = document.queryselectoAllr("#buttons-container button")  // disparar atraves do click no visor
 
-class Caculator {
+const previousOperationText = document.querySelector("#previous-operation")   // selecionar os elementos (visor)
+const currentOperationText = document.querySelector("#current-operation")
+const buttons = document.querySelectorAll("#buttons-container button")  // disparar atraves do click no visor
+
+class calculator {
     constructor(previousOperationText, currentOperationText) {
         this.previousOperationText = previousOperationText
         this.currentOperationText = currentOperationText
         this.currentOperation = ""
     }
 
-    addDigit(digit) {
-        if(digit === "." && this.currentOperationText.innerText.includes(".")) {
-            return;
-        }
-        
-        this.currentOperation = digit
-        this.updateScreen()
+addDigit(digit) {
+    if(digit === "." && this.currentOperationText.innerText.includes(".")) {
+        return;
     }
+        
+    this.currentOperation = digit
+    this.updateScreen()
+}
 
-    processOperation(operations) {
-        if (this.currentOperationText.innerText === "" && operations !== "C") {
-            if (this.previousOperationText.innerText !== "") {
-                this.chageOperation(operations);
+processOperation(operations) {
+    if (this.currentOperationText.innerText === "" && operations !== "C") {
+        if (this.previousOperationText.innerText !== "") {
+            this.changeOperation(operations);
         }
         return;
-        }
-
-        let operationValue;
-        const previous = +this.previousOperationText.innerText.split(" ")[0];
-        const current = +this.currentOperationText.innerText;
-
-        switch (operations) {
-            case "+":
-                operationValue = previous + current;
-                this.updateScreen(operationValue, operations, current, previous);
-                break;
-            case "-":
-                operationValue = previous - current;
-                this.updateScreen(operationValue, operations, current, previous);
-                break;
-            case "/":
-                operationValue = previous / current;
-                this.updateScreen(operationValue, operations, current, previous);
-                break;
-            case "*":
-                operationValue = previous * current;
-                this.updateScreen(operationValue, operations, current, previous);
-                break;
-            case "DEL":
-                this.precessDelOperator();
-                break;
-            case "CE":
-                this.processClearCurrentOperator();
-                break;
-            case "C":
-                this.processClerOperator();
-                break;
-            case "=":
-                this.processEqaualOperator();
-                break;
-            default:
-                return;
-        }
     }
 
-    updateScreen(
-        operationValue = null,
-        operation = null,
-        current = null,
-        previous = null
-    ) {
+    let operationValue;
+    const previous = +this.previousOperationText.innerText.split(" ")[0];
+    const current = +this.currentOperationText.innerText;
 
-        if(operationValue === null) {
-            this.currentOperationText.innerText += this.currentOperation;
-        } else {
-            if(previous === 0) {
-                operationValue = current
-            }
-
-            this.previousOperationText.innerText = `${operationValue} ${operation}`;
-            this.currentOperationText.innerText = "";
-        }
+    switch (operations) {
+        case "+":
+            operationValue = previous + current;
+            this.updateScreen(operationValue, operations, current, previous);
+            break;
+        case "-":
+            operationValue = previous - current;
+            this.updateScreen(operationValue, operations, current, previous);
+            break;
+        case "/":
+            operationValue = previous / current;
+            this.updateScreen(operationValue, operations, current, previous);
+            break;
+        case "*":
+            operationValue = previous * current;
+            this.updateScreen(operationValue, operations, current, previous);
+            break;
+        case "DEL":
+            this.processDelOperator();
+            break;
+        case "CE":
+            this.processClearCurrentOperation();
+            break;
+        case "C":
+            this.processClearOperator();
+            break;
+        case "=":
+            this.processEqualOperator();
+            break;
+        default:
+            return;
     }
+}
+
+updateScreen(
+    operationValue = null,
+    operation = null,
+    current = null,
+    previous = null
+) {
+
+    if(operationValue === null) {
+        this.currentOperationText.innerText += this.currentOperation;
+    } else {
+        if(previous === 0) {
+            operationValue = current
+        }
+
+        this.previousOperationText.innerText = `${operationValue} ${operation}`;
+        this.currentOperationText.innerText = "";
+    }
+}
 
 changeOperation(operations) {
     const mathOperations = ["*","/","+","-"]
@@ -100,30 +101,30 @@ processDelOperator() {
 }
 
 processClearCurrentOperator() {
-    this,currentOperationText.innerText = "";
+    this.currentOperationText.innerText = "";
 }
 
-processClerOperator() {
+processClearOperator() {
     this.currentOperationText.innerText = "";
     this.previousOperationText.innerText = "";
 }
 
-processEqaualOperator() {
+processEqualOperator() {
     const operation = previousOperationText.innerText.split(" ")[1];
 
     this.processOperation(operation);
 }
 }
 
-const calc = new Caculator(previousOperationText, currentOperationText);
+const calc = new calculator(previousOperationText, currentOperationText);
 
 buttons.forEach((btn) => {
-    btn.addEventlistener("click", (e) => {
+    btn.addEventListener("click", (e) => {
 
         const value = e.target.innerText;
 
         if(+value >= 0 || value === ".") {
-            calc.addDoigit(value);
+            calc.addDigit(value);
         } else {
             calc.processOperation(value);
         }

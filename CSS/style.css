@@ -32,20 +32,21 @@ body {
     text-align: right;  /*numeros da direita para esquerda*/
 }
 
-#previous-operations,
+#previous-operation,
 #current-operation {
     min-height: 1.6em;
     padding: .2em;  /*tirando os numeros da extremidade*/
     overflow-wrap: break-word; /*prever a altura dos numero e quebrar linha para baixo*/
 }
 
-#previous-operations {
-    color: aquamarine;
+#previous-operation {
+    color: rgb(218, 166, 24);
 }
 
 #current-operation {
     font-size: 3em;
     font-weight: 700;
+    color: brown;
 }
 
 #buttons-container { 
